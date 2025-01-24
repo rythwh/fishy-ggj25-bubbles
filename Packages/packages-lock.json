@@ -7,6 +7,16 @@
       "dependencies": {},
       "hash": "8042b29ff87dd5506d7aad72bd6d8d7405985f27"
     },
+    "com.rywh.ryui": {
+      "version": "https://github.com/rythwh/RyUI.git?path=Packages/RyUI",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.3",
+        "com.unity.addressables": "2.2.2"
+      },
+      "hash": "5e62e466824a9348e0136da7bf3bd603ec7d8cd0"
+    },
     "com.unity.addressables": {
       "version": "2.2.2",
       "depth": 0,
