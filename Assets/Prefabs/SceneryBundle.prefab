@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925e0fddc603479eae81e73072ca716f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockPrefab: {fileID: 7166559479673158604, guid: fc9b40d94880fa64fa8c900d845b2c5d, type: 3}
+  rockPrefab: {fileID: 7166559479673158604, guid: eef0a7712c3674689adb581e52cca797, type: 3}
