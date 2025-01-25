@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fishy;
 using Fishy.NState;
 using Fishy.NUI;
+using Fishy.Whale;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
 	private void CreateManagers() {
 		Create<UIManager>();
 		Create<StateManager>();
+		Create<WhaleManager>();
 	}
 
 	public void Start() {
