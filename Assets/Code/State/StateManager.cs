@@ -1,6 +1,5 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using RyUI;
 
 namespace Fishy.NState {
 	public partial class StateManager : IManager {
