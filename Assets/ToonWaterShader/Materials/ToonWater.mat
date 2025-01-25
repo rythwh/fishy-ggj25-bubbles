@@ -65,11 +65,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SurfaceDistortion:
         m_Texture: {fileID: 2800000, guid: c53bb6b8c40b02141be3fdec5cc582e9, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _SurfaceNoise:
         m_Texture: {fileID: 2800000, guid: e182ac5d3b797044fb29f3fa2acc3708, type: 3}
-        m_Scale: {x: 500, y: 500}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
@@ -78,8 +78,8 @@ Material:
     - _DepthMaxDistance: 2.37
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FoamMaxDistance: 0.5
-    - _FoamMinDistance: 0.04
+    - _FoamMaxDistance: 1
+    - _FoamMinDistance: 0.3
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -95,6 +95,9 @@ Material:
     - _SurfaceDistortionAmount: 0.85
     - _SurfaceNoiseCutoff: 0.723
     - _UVSec: 0
+    - _WaveFrequency: 1
+    - _WaveHeight: 0.01
+    - _WaveSpeed: 3
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
