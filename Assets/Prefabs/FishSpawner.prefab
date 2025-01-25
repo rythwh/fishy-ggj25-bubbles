@@ -46,3 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   fishPrefab: {fileID: 6519068819744837395, guid: 9eb8b0d78165b4958ad7ba1df2d01a55, type: 3}
+  spawnRadius: 10
+  minTimeBetweenSpawns: 1
+  maxTimeBetweenSpawns: 20
+  minLifetime: 10
+  maxLifetime: 20
