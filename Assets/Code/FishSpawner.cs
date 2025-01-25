@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class FishSpawner : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private float playerOffset;
     [SerializeField] private GameObject fishPrefab;
     
     [Header("Spawn Radius Settings")]
@@ -84,7 +85,7 @@ public class FishSpawner : MonoBehaviour
         Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
         return new Vector3(
             playerTransform.position.x + randomCircle.x,
-            playerTransform.position.y,
+            playerTransform.position.y - playerOffset,
             playerTransform.position.z + randomCircle.y
         );
     }

@@ -1,23 +1,18 @@
-using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Fishy.NState;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 namespace Fishy.World
 {
 	public class WorldManager : IManager
 	{
-		private Vector2 playerPosition;
-		private Vector2Int playerChunk = new Vector2Int(int.MaxValue, int.MaxValue);
+		private Vector3 playerPosition;
+		private Vector3Int playerChunk = new Vector3Int(int.MaxValue, int.MaxValue);
 		public const int ChunkSize = 64;
 		private const int ChunkDistance = 4;
-		private readonly Dictionary<Vector2Int, SceneryBundle> sceneryBundles = new();
+		private readonly Dictionary<Vector3Int, SceneryBundle> sceneryBundles = new();
 
 		public void OnCreate() {
 			GameManager.SharedReferences.Player.OnPlayerMoved += OnPlayerMoved;
@@ -26,36 +21,39 @@ namespace Fishy.World
 
 		private void OnStateChanged((EState previousState, EState newState) state) {
 			if (state is { previousState: EState.LoadToGame, newState: EState.Game }) {
-				playerPosition = Vector2.zero;
-				GenerateWorld().Forget();
+				playerPosition = Vector3.zero;
+				GenerateWorld();
 			}
 		}
 
-		private void OnPlayerMoved(Vector2 playerPosition) {
+		private void OnPlayerMoved(Vector3 playerPosition) {
 			this.playerPosition = playerPosition;
-			GenerateWorld().Forget();
+			GenerateWorld();
 		}
 
-		private async UniTaskVoid GenerateWorld() {
-			Vector2Int currentPlayerChunk = new Vector2Int(
+		private void GenerateWorld() {
+			Vector3Int currentPlayerChunk = new Vector3Int(
 				Mathf.FloorToInt(playerPosition.x / ChunkSize),
-				Mathf.FloorToInt(playerPosition.y / ChunkSize)
+				Mathf.FloorToInt(playerPosition.z / ChunkSize)
 			);
 			if (currentPlayerChunk != playerChunk) {
 				playerChunk = currentPlayerChunk;
-				for (int x = -ChunkDistance - 1; x < ChunkDistance + 1; x++) {
-					for (int y = -ChunkDistance - 1; y < ChunkDistance + 1; y++) {
-						Vector2Int chunkPosition = new Vector2Int(x, y);
-						if (x is -ChunkDistance - 1 or ChunkDistance && y is -ChunkDistance - 1 or ChunkDistance) {
+				Vector3Int playerChunkMin = playerChunk - (Vector3Int.one * (ChunkDistance + 1));
+				Vector3Int playerChunkMax = playerChunk + (Vector3Int.one * (ChunkDistance + 1));
+				for (int x = playerChunkMin.x; x < playerChunkMax.x; x++) {
+					for (int z = playerChunkMin.z; z < playerChunkMax.z; z++) {
+						Vector3Int chunkPosition = new Vector3Int(x, 0, z);
+						if ((x == playerChunkMin.x || x == playerChunkMax.x - 1) || (z == playerChunkMin.z || z == playerChunkMax.z - 1)) {
 							if (sceneryBundles.TryGetValue(chunkPosition, out SceneryBundle sceneryBundle)) {
-								Object.Destroy(sceneryBundle);
+								Object.Destroy(sceneryBundle.gameObject);
+								sceneryBundles.Remove(chunkPosition);
 							}
 						} else {
 							if (sceneryBundles.TryGetValue(chunkPosition, out SceneryBundle _)) {
 								continue;
 							}
-							Vector2Int spawnPositionInt = chunkPosition * ChunkSize;
-							Vector3 spawnPosition = new Vector3(spawnPositionInt.x, 0, spawnPositionInt.y);
+							Vector3Int spawnPositionInt = chunkPosition * ChunkSize;
+							Vector3 spawnPosition = new Vector3(spawnPositionInt.x, 0, spawnPositionInt.z);
 							SceneryBundle sceneryBundlePrefab = GameManager.SharedReferences.SceneryBundlePrefab;
 							SceneryBundle sceneryBundle = Object.Instantiate(sceneryBundlePrefab, spawnPosition, Quaternion.identity).GetComponent<SceneryBundle>();
 							sceneryBundles.Add(chunkPosition, sceneryBundle);
