@@ -6,5 +6,8 @@ namespace Fishy
 	{
 		[SerializeField] private Transform canvas;
 		public Transform Canvas => canvas;
+
+		[SerializeField] private Transform playerTransform;
+		public Transform PlayerTransform => playerTransform;
 	}
 }
