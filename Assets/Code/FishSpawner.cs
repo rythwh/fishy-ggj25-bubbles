@@ -17,14 +17,12 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private int minTimeBetweenSpawns = 5;
     [SerializeField] private int maxTimeBetweenSpawns = 60;
 
-    [Header("Lifetime Settings")]
-    [SerializeField] private int minLifetime = 10;
-    [SerializeField] private int maxLifetime = 90;
+    [Header("Fish Settings")]
+    [SerializeField] private float minimumSpacingBetweenFish = 3f;
+    [SerializeField] private int maximumFishCount = 5;
 
-    private int maximumFishParticlesAtOnce = 5;
     private int currentNumberOfFish = 0;
     private List<GameObject> objectPool = new();
-    private float elapsedTime = 0f;
     
     private void Start()
     {
@@ -33,37 +31,39 @@ public class FishSpawner : MonoBehaviour
     
     private IEnumerator SpawnRoutine()
     {
-        float randomLifetime = Random.Range(minLifetime, maxLifetime);
-        while (elapsedTime < randomLifetime)
+        while (true) // Run forever
         {
-            elapsedTime += Time.deltaTime;
-            if (currentNumberOfFish < maximumFishParticlesAtOnce)
+            if (currentNumberOfFish < maximumFishCount)
             {
                 float randomSpawnDelay = Random.Range(minTimeBetweenSpawns, maxTimeBetweenSpawns);
                 yield return new WaitForSeconds(randomSpawnDelay);
 
-                if (elapsedTime <= randomLifetime)
-                {
-                    GameObject obj = GetPooledObject();
-                    obj.transform.position = GetRandomPositionAroundPlayer();
-                    obj.SetActive(true);
-                    currentNumberOfFish++;
-                    float randomFishLifetime = Random.Range(minLifetime, maxLifetime);
-                    StartCoroutine(DeactivateObjectAfterTime(obj, randomFishLifetime));
-                }
+                GameObject obj = GetPooledObject();
+                obj.transform.position = GetRandomPositionAroundPlayer();
+                obj.SetActive(true);
+                currentNumberOfFish++;
             }
             else
             {
                 yield return new WaitForSeconds(1f);
             }
         }
-        gameObject.SetActive(false);
     }
 
-    private IEnumerator DeactivateObjectAfterTime(GameObject obj, float time)
+    public void RemoveFishingSpot(GameObject fishingSpot)
     {
-        yield return new WaitForSeconds(time);
-        obj.SetActive(false);
+        Debug.Log($"RemoveFishingSpot called for {fishingSpot.name}");
+        if (fishingSpot.activeInHierarchy)
+        {
+            Debug.Log("Deactivating fishing spot");
+            fishingSpot.SetActive(false);
+            currentNumberOfFish--;
+            Debug.Log($"Current number of fish: {currentNumberOfFish}");
+        }
+        else
+        {
+            Debug.Log("Fishing spot was not active in hierarchy");
+        }
     }
 
     private GameObject GetPooledObject()
@@ -82,11 +82,46 @@ public class FishSpawner : MonoBehaviour
 
     private Vector3 GetRandomPositionAroundPlayer()
     {
-        Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
+        int maxAttempts = 30; // Prevent infinite loops
+        int attempts = 0;
+
+        while (attempts < maxAttempts)
+        {
+            Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
+            Vector3 potentialPosition = new Vector3(
+                playerTransform.position.x + randomCircle.x,
+                playerTransform.position.y - playerOffset,
+                playerTransform.position.z + randomCircle.y
+            );
+
+            // Check if this position is far enough from all other fish
+            bool isFarEnough = true;
+            foreach (var fish in objectPool)
+            {
+                if (!fish.activeInHierarchy) continue;
+                
+                float distance = Vector3.Distance(fish.transform.position, potentialPosition);
+                if (distance < minimumSpacingBetweenFish)
+                {
+                    isFarEnough = false;
+                    break;
+                }
+            }
+
+            if (isFarEnough)
+            {
+                return potentialPosition;
+            }
+
+            attempts++;
+        }
+
+        // If we couldn't find a good position after max attempts, just return the last attempted position
+        Vector2 fallbackCircle = Random.insideUnitCircle * spawnRadius;
         return new Vector3(
-            playerTransform.position.x + randomCircle.x,
+            playerTransform.position.x + fallbackCircle.x,
             playerTransform.position.y - playerOffset,
-            playerTransform.position.z + randomCircle.y
+            playerTransform.position.z + fallbackCircle.y
         );
     }
 }

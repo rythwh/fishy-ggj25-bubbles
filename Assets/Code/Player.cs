@@ -10,11 +10,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float movementSmoothness = 0.1f;
     [SerializeField] private float rotationSmoothness = 0.1f;
 
-    [SerializeField] private FishCounter fishCounter;
+    [SerializeField] private FishingMinigame fishingMinigame;
+    [SerializeField] private GameObject fishingSpotIndicator;
     private Vector2 movementInput;
     private float currentSpeed;
     private float currentRotationSpeed;
     private bool isCollidingWithFish = false;
+    private GameObject currentFishingSpot;
+    
 
     public event Action<Vector3> OnPlayerMoved;
     
@@ -26,7 +29,7 @@ public class Player : MonoBehaviour
     
     [UsedImplicitly]
     public void OnInteract(InputAction.CallbackContext context) {
-        if (isCollidingWithFish) // Check if the interaction is performed and the object is colliding with a fish
+        if (isCollidingWithFish && !fishingMinigame.reelingFish)
         {
             StartFish();
         }
@@ -37,6 +40,9 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Fish"))
         {
             isCollidingWithFish = true;
+            fishingSpotIndicator.SetActive(true);
+            currentFishingSpot = other.gameObject;
+            fishingMinigame.SetCurrentFishingSpot(currentFishingSpot);
         }
     }
 
@@ -45,6 +51,17 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Fish"))
         {
             isCollidingWithFish = false;
+            fishingSpotIndicator.SetActive(false);
+            currentFishingSpot = null;
+            fishingMinigame.SetCurrentFishingSpot(null);
+        }
+    }
+
+    private void Start()
+    {
+        if (fishingSpotIndicator != null)
+        {
+            fishingSpotIndicator.SetActive(false);
         }
     }
 
@@ -73,6 +90,6 @@ public class Player : MonoBehaviour
     private void StartFish()
     {
         Debug.Log("Fish!");
-        fishCounter.AddFish();
+        fishingMinigame.StartReeling();
     }
 }

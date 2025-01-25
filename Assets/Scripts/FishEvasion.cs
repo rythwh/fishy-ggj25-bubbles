@@ -17,9 +17,8 @@ public class FishEvasion : MonoBehaviour
     [Range(0, 5f)]public float moveSpeed; //How fast the fish move
     public float maxWaitTime, minWaitTime; //How long the fish waits before moving again
     
-    private Vector3 currentDestination; //Where the fish is moving towards
-
-    private bool waiting = false; //Used when waiting for a new destination
+    public Vector3 currentDestination; //Where the fish is moving towards
+    public bool waiting = false; //Used when waiting for a new destination
 
     private void Start() {
         currentDestination = RandomDestination(); //Give the fish a random direction to go to

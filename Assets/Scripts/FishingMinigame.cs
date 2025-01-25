@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 using System.Collections;
+using TMPro;
+using JetBrains.Annotations;
 
 public class FishingMinigame : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class FishingMinigame : MonoBehaviour
 	
 	//These bools are just for keeping track of the state of the minigame we are in
 	public bool reelingFish = false;
+	private GameObject currentFishingSpot;
+	private FishSpawner fishSpawner;
 
 	[Header("Setup References")]
 	//The catching bar is the green bar that you put ontop of the fish to catch it
@@ -39,20 +43,29 @@ public class FishingMinigame : MonoBehaviour
 	[SerializeField] private float catchSpeed = 10f;
 	[SerializeField] private float catchingForce = 500f;
 
+	// Replace FishCounter with direct TMP_Text reference
+	[SerializeField] private TMP_Text fishCounterText;
+	private int fishCount = 0;
+
 	private bool isJumpHeld = false;
 
+	[Header("Setup References")]
+	[SerializeField] private GameObject fishingSpotIndicator;
+
 	private void Start() {
-		catchingBarRB = catchingbar.GetComponent<Rigidbody2D>(); //Get reference to the Rigidbody on the catchingbar
-		catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition; //Use this to reset the catchingbars position to the bottom of the "water"
+		catchingBarRB = catchingbar.GetComponent<Rigidbody2D>();
+		catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition;
+		// Find the FishSpawner in the scene
+		fishSpawner = FindObjectOfType<FishSpawner>();
+		if (fishSpawner == null)
+		{
+			Debug.LogError("No FishSpawner found in scene!");
+		}
 	}
 
+	[UsedImplicitly]
 	public void OnJump(InputAction.CallbackContext context)
 	{
-		if (context.started && !reelingFish)
-		{
-			StartReeling();
-		}
-		
 		isJumpHeld = context.performed;
 	}
 
@@ -61,7 +74,6 @@ public class FishingMinigame : MonoBehaviour
 			return;
 		}
 
-		// Handle catching bar movement
 		if (isJumpHeld) {
 			catchingBarRB.AddForce(Vector2.up * catchingForce * Time.deltaTime, ForceMode2D.Force);
 		}
@@ -76,8 +88,9 @@ public class FishingMinigame : MonoBehaviour
 		}
 	}
 
-	private void StartReeling() {
+	public void StartReeling() {
 		reelingFish = true;
+		catchingbar.transform.localPosition = catchingBarLoc;
 		
 		// Pick a random fish sprite
 		int randomFishIndex = Random.Range(0, fishSprites.Length);
@@ -92,6 +105,23 @@ public class FishingMinigame : MonoBehaviour
 		var h = Map(0, 32, 0, 100, randomFishSprite.texture.height);
 		fishBar.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
 
+		// Reset fish position and state
+		fishBar.transform.localPosition = Vector3.zero;
+		var fishTrigger = fishBar.GetComponent<FishingMinigame_FishTrigger>();
+		if (fishTrigger != null)
+		{
+			fishTrigger.beingCaught = false;
+		}
+		
+		// Reset fish evasion
+		var fishEvasion = fishBar.GetComponent<FishEvasion>();
+		if (fishEvasion != null)
+		{
+			fishEvasion.currentDestination = fishBar.transform.position;
+			fishEvasion.waiting = false;
+		}
+		
+		inTrigger = false;
 		minigameCanvas.SetActive(true);
 	}
 
@@ -99,12 +129,43 @@ public class FishingMinigame : MonoBehaviour
 	
 	public void FishOutOfBar() => inTrigger = false;
 
-	private void FishCaught() {
-		Debug.Log($"Success! Caught a: {currentFishName}");
+	public void SetCurrentFishingSpot(GameObject fishingSpot)
+	{
+		currentFishingSpot = fishingSpot;
+		
+		// If we leave the fishing spot while fishing, cancel the minigame
+		if (fishingSpot == null && reelingFish)
+		{
+			CancelFishing();
+		}
+	}
+
+	private void CancelFishing()
+	{
 		reelingFish = false;
 		minigameCanvas.SetActive(false);
-		catchingbar.transform.localPosition = catchingBarLoc;
 		catchPercentage = 0f;
+		catchingbar.transform.localPosition = catchingBarLoc;
+	}
+
+	private void FishCaught() {
+		Debug.Log($"Success! Caught a: {currentFishName}");
+		
+		reelingFish = false;
+		minigameCanvas.SetActive(false);
+		catchPercentage = 0f;
+		
+		// Update fish count directly
+		fishCount++;
+		fishCounterText.text = fishCount.ToString();
+
+		// Deactivate both the fishing spot and indicator
+		if (currentFishingSpot != null)
+		{
+			currentFishingSpot.SetActive(false);
+			fishingSpotIndicator.SetActive(false);
+			currentFishingSpot = null;
+		}
 	}
 
 	private float Map(float a, float b, float c, float d, float x) {
