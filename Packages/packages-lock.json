@@ -15,7 +15,13 @@
         "com.cysharp.unitask": "2.5.3",
         "com.unity.addressables": "2.2.2"
       },
-      "hash": "a170c5b67446af161f2d70ea6f9c91802ec2ec5f"
+      "hash": "73a4d5fabd001cde61cad854e83450df448825ca"
+    },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.addressables": {
       "version": "2.2.2",

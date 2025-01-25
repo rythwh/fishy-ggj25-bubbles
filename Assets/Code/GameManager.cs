@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using RyUI;
 using Fishy;
 using Fishy.NState;
+using Fishy.NUI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
