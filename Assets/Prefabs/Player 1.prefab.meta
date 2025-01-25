@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Rock.prefab.meta
+guid: fc9b40d94880fa64fa8c900d845b2c5d
+========
 guid: ba581b237dc45484c9f11fb5a03f765c
+>>>>>>>> f71a3b7fd24ffe419fc4fdc3d683a590c6371a3f:Assets/Prefabs/Player 1.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

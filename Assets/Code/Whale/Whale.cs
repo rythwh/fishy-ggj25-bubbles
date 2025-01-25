@@ -16,7 +16,7 @@ namespace Fishy.Whale
 		private void UpdatePosition() {
 			transform.position = Vector3.MoveTowards(
 				transform.position,
-				GameManager.SharedReferences.PlayerTransform.position,
+				GameManager.SharedReferences.Player.transform.position,
 				Time.deltaTime * MaxMoveSpeed
 			);
 			transform.position = new Vector3(transform.position.x, WhaleManager.WhaleDepth, transform.position.z);

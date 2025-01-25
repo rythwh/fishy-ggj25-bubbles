@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fishy.World;
+using UnityEngine;
 
 namespace Fishy
 {
@@ -7,7 +8,10 @@ namespace Fishy
 		[SerializeField] private Transform canvas;
 		public Transform Canvas => canvas;
 
-		[SerializeField] private Transform playerTransform;
-		public Transform PlayerTransform => playerTransform;
+		[SerializeField] private Player player;
+		public Player Player => player;
+
+		[SerializeField] private SceneryBundle sceneryBundlePrefab;
+		public SceneryBundle SceneryBundlePrefab => sceneryBundlePrefab;
 	}
 }
