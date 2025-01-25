@@ -9,12 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private float movementSmoothness = 0.1f;
     [SerializeField] private float rotationSmoothness = 0.1f;
-    
+
     private Vector2 movementInput;
     private float currentSpeed;
     private float currentRotationSpeed;
 
-    public event Action<Vector2> OnPlayerMoved;
+    public event Action<Vector3> OnPlayerMoved;
 
     [UsedImplicitly]
     public void OnMove(InputAction.CallbackContext context) {
