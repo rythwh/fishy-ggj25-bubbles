@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &238704628 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3230229048606865114, guid: 3dd2599dfea9b486a943ab643b33af2d, type: 3}
+  m_PrefabInstance: {fileID: 3449085896605760126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1509551538
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +696,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2970409534075369425, guid: 28e9cfcfe8b9f4cb4bb4ebbe9e71034b, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 238704628}
     - target: {fileID: 4269132605884833049, guid: 28e9cfcfe8b9f4cb4bb4ebbe9e71034b, type: 3}
       propertyPath: m_Name
       value: FishSpawner
