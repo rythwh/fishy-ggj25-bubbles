@@ -10,12 +10,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float movementSmoothness = 0.1f;
     [SerializeField] private float rotationSmoothness = 0.1f;
 
+    [SerializeField] private FishCounter fishCounter;
     private Vector2 movementInput;
     private float currentSpeed;
     private float currentRotationSpeed;
     private bool isCollidingWithFish = false;
 
     public event Action<Vector3> OnPlayerMoved;
+    
 
     [UsedImplicitly]
     public void OnMove(InputAction.CallbackContext context) {
@@ -71,5 +73,6 @@ public class Player : MonoBehaviour
     private void StartFish()
     {
         Debug.Log("Fish!");
+        fishCounter.AddFish();
     }
 }

@@ -4848,6 +4848,7 @@ GameObject:
   - component: {fileID: 6799579743950445199}
   - component: {fileID: 8230593224373515562}
   - component: {fileID: 5862392483362106259}
+  - component: {fileID: 8154154757789130869}
   m_Layer: 0
   m_Name: PlayerBoat
   m_TagString: Untagged
@@ -5080,6 +5081,7 @@ MonoBehaviour:
   rotationSpeed: 100
   movementSmoothness: 0.02
   rotationSmoothness: 0.008
+  fishCounter: {fileID: 8154154757789130869}
 --- !u!54 &5862392483362106259
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5107,6 +5109,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8154154757789130869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021178422723024478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abee2bae409047a18226aff7e1f9da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1620603941184552727
 PrefabInstance:
   m_ObjectHideFlags: 0
