@@ -55,4 +55,36 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/World/WorldManager.cs</url>
+          <line>46</line>
+          <properties documentPath="C:\Users\Ryan\Documents\GitHub\fishy-ggj25-bubbles\Assets\Code\World\WorldManager.cs" containingFunctionPresentation="Method 'GenerateWorld'">
+            <startOffsets>
+              <option value="1752" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1831" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/World/WorldManager.cs</url>
+          <line>51</line>
+          <properties documentPath="C:\Users\Ryan\Documents\GitHub\fishy-ggj25-bubbles\Assets\Code\World\WorldManager.cs" containingFunctionPresentation="Method 'GenerateWorld'">
+            <startOffsets>
+              <option value="1961" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2028" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>

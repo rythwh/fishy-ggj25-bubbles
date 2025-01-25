@@ -9,10 +9,10 @@ namespace Fishy.World
 	public class WorldManager : IManager
 	{
 		private Vector3 playerPosition;
-		private Vector2Int playerChunk = new Vector2Int(int.MaxValue, int.MaxValue);
+		private Vector3Int playerChunk = new Vector3Int(int.MaxValue, int.MaxValue);
 		public const int ChunkSize = 64;
 		private const int ChunkDistance = 4;
-		private readonly Dictionary<Vector2Int, SceneryBundle> sceneryBundles = new();
+		private readonly Dictionary<Vector3Int, SceneryBundle> sceneryBundles = new();
 
 		public void OnCreate() {
 			GameManager.SharedReferences.Player.OnPlayerMoved += OnPlayerMoved;
@@ -32,18 +32,18 @@ namespace Fishy.World
 		}
 
 		private void GenerateWorld() {
-			Vector2Int currentPlayerChunk = new Vector2Int(
+			Vector3Int currentPlayerChunk = new Vector3Int(
 				Mathf.FloorToInt(playerPosition.x / ChunkSize),
 				Mathf.FloorToInt(playerPosition.z / ChunkSize)
 			);
 			if (currentPlayerChunk != playerChunk) {
 				playerChunk = currentPlayerChunk;
-				Vector2Int playerChunkMin = playerChunk - (Vector2Int.one * (ChunkDistance + 1));
-				Vector2Int playerChunkMax = playerChunk + (Vector2Int.one * (ChunkDistance + 1));
+				Vector3Int playerChunkMin = playerChunk - (Vector3Int.one * (ChunkDistance + 1));
+				Vector3Int playerChunkMax = playerChunk + (Vector3Int.one * (ChunkDistance + 1));
 				for (int x = playerChunkMin.x; x < playerChunkMax.x; x++) {
-					for (int y = playerChunkMin.y; y < playerChunkMax.y; y++) {
-						Vector2Int chunkPosition = new Vector2Int(x, y);
-						if ((x == playerChunkMin.x || x == playerChunkMax.x - 1) && (y == playerChunkMin.y || y == playerChunkMax.y - 1)) {
+					for (int z = playerChunkMin.z; z < playerChunkMax.z; z++) {
+						Vector3Int chunkPosition = new Vector3Int(x, 0, z);
+						if ((x == playerChunkMin.x || x == playerChunkMax.x - 1) || (z == playerChunkMin.z || z == playerChunkMax.z - 1)) {
 							if (sceneryBundles.TryGetValue(chunkPosition, out SceneryBundle sceneryBundle)) {
 								Object.Destroy(sceneryBundle.gameObject);
 								sceneryBundles.Remove(chunkPosition);
@@ -52,8 +52,8 @@ namespace Fishy.World
 							if (sceneryBundles.TryGetValue(chunkPosition, out SceneryBundle _)) {
 								continue;
 							}
-							Vector2Int spawnPositionInt = chunkPosition * ChunkSize;
-							Vector3 spawnPosition = new Vector3(spawnPositionInt.x, 0, spawnPositionInt.y);
+							Vector3Int spawnPositionInt = chunkPosition * ChunkSize;
+							Vector3 spawnPosition = new Vector3(spawnPositionInt.x, 0, spawnPositionInt.z);
 							SceneryBundle sceneryBundlePrefab = GameManager.SharedReferences.SceneryBundlePrefab;
 							SceneryBundle sceneryBundle = Object.Instantiate(sceneryBundlePrefab, spawnPosition, Quaternion.identity).GetComponent<SceneryBundle>();
 							sceneryBundles.Add(chunkPosition, sceneryBundle);
