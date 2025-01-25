@@ -2,6 +2,7 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     private float currentRotationSpeed;
     private bool isCollidingWithFish = false;
     private GameObject currentFishingSpot;
+    private Vector3 indicatorInitialScale;
     
 
     public event Action<Vector3> OnPlayerMoved;
@@ -35,32 +37,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Fish"))
-        {
-            isCollidingWithFish = true;
-            fishingSpotIndicator.SetActive(true);
-            currentFishingSpot = other.gameObject;
-            fishingMinigame.SetCurrentFishingSpot(currentFishingSpot);
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Fish"))
-        {
-            isCollidingWithFish = false;
-            fishingSpotIndicator.SetActive(false);
-            currentFishingSpot = null;
-            fishingMinigame.SetCurrentFishingSpot(null);
-        }
-    }
-
     private void Start()
     {
         if (fishingSpotIndicator != null)
         {
+            indicatorInitialScale = fishingSpotIndicator.transform.localScale;
             fishingSpotIndicator.SetActive(false);
         }
     }
@@ -85,6 +66,36 @@ public class Player : MonoBehaviour
             return;
         }
         OnPlayerMoved?.Invoke(transform.position);
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Fish"))
+        {
+            isCollidingWithFish = true;
+            if (!fishingSpotIndicator.activeSelf)
+            {
+                fishingSpotIndicator.SetActive(true);
+                fishingSpotIndicator.transform.localScale = Vector3.zero;
+                fishingSpotIndicator.transform.DOScale(indicatorInitialScale, 0.3f)
+                    .SetEase(Ease.OutBack);
+            }
+            currentFishingSpot = other.gameObject;
+            fishingMinigame.SetCurrentFishingSpot(currentFishingSpot);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Fish"))
+        {
+            isCollidingWithFish = false;
+            fishingSpotIndicator.transform.DOScale(Vector3.zero, 0.2f)
+                .SetEase(Ease.InBack)
+                .OnComplete(() => fishingSpotIndicator.SetActive(false));
+            currentFishingSpot = null;
+            fishingMinigame.SetCurrentFishingSpot(null);
+        }
     }
 
     private void StartFish()
