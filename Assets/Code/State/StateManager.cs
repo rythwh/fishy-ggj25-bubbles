@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Fishy.NUI;
 
 namespace Fishy.NState {
 	public partial class StateManager : IManager {
@@ -39,10 +40,10 @@ namespace Fishy.NState {
 				case ETransitionUIAction.Nothing:
 					break;
 				case ETransitionUIAction.Hide:
-					// GameManager.Get<UIManager>().ToggleAllViews();
+					GameManager.Get<UIManager>().ToggleAllViews();
 					break;
 				case ETransitionUIAction.Close:
-					// GameManager.Get<UIManager>().CloseAllViews();
+					GameManager.Get<UIManager>().CloseAllViews();
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(transitionUIAction), transitionUIAction, null);

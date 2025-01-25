@@ -4,6 +4,7 @@ namespace Fishy
 {
 	public class SharedReferences : MonoBehaviour
 	{
-		public Transform canvas;
+		[SerializeField] private Transform canvas;
+		public Transform Canvas => canvas;
 	}
 }

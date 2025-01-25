@@ -5,7 +5,9 @@ namespace Fishy.NUI
 {
 	public class UIManager : IManager, IUIManager
 	{
-		private readonly IUIManager iuiManagerImplementation = new RyUI.UIManager();
+		private readonly IUIManager iuiManagerImplementation = new RyUI.UIManager {
+			canvas = GameManager.SharedReferences.Canvas
+		};
 
 		public UniTask<IUIPresenter> OpenViewAsync<TUIConfig>() where TUIConfig : IUIConfig, new() {
 			return iuiManagerImplementation.OpenViewAsync<TUIConfig>();
