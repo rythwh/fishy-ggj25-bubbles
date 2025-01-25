@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 using System.Collections;
 using TMPro;
 using JetBrains.Annotations;
+using DG.Tweening;
 
 public class FishingMinigame : MonoBehaviour
 {
@@ -72,6 +73,12 @@ public class FishingMinigame : MonoBehaviour
 	private void Update() {
 		if (!reelingFish) {
 			return;
+		}
+
+		if (Input.GetKeyDown(KeyCode.O))
+		{
+			reelingFish = true;
+			FishCaught();
 		}
 
 		if (isJumpHeld) {
@@ -158,6 +165,10 @@ public class FishingMinigame : MonoBehaviour
 		// Update fish count directly
 		fishCount++;
 		fishCounterText.text = fishCount.ToString();
+		// Add punch animation to the counter text with percentage of current scale
+		Vector3 punchAmount = fishCounterText.transform.localScale * 0.3f; // 30% of current scale
+		fishCounterText.transform.DOPunchScale(punchAmount, 0.3f, 10, 0.5f)
+			.SetEase(Ease.OutElastic);
 
 		// Deactivate both the fishing spot and indicator
 		if (currentFishingSpot != null)
@@ -167,6 +178,8 @@ public class FishingMinigame : MonoBehaviour
 			currentFishingSpot = null;
 		}
 	}
+	
+	
 
 	private float Map(float a, float b, float c, float d, float x) {
 		return (x - a) / (b - a) * (d - c) + c;

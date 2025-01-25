@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eea8814e-5025-433c-bbbe-6df449c85e21" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.fishy-ggj25-bubbles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.fishy-ggj25-bubbles/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/FishSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/FishSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FishParticles.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FishParticles.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/David.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/David.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FishingMinigame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FishingMinigame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ToonWaterShader/Materials/ToonWater.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ToonWaterShader/Materials/ToonWater.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737829079552</updated>
-      <workItem from="1737829081223" duration="3993000" />
+      <workItem from="1737829081223" duration="5104000" />
     </task>
     <servers />
   </component>
