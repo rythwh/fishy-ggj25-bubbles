@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: fb8313b028ca84ab6961c23483e72bab, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b90946f2f71ed4772a1dd55afff69e5d, type: 2}
+      objectReference: {fileID: 2100000, guid: 7aa9047a9281840ff98461ef491d30c0, type: 2}
     - target: {fileID: 919132149155446097, guid: fb8313b028ca84ab6961c23483e72bab, type: 3}
       propertyPath: m_Name
       value: Fish
