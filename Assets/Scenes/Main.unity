@@ -449,6 +449,63 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1001 &1453604490
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5210136758707962089, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_Name
+      value: FishingMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.2872756
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.33327833
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.1966615
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862295427287528853, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
 --- !u!1 &1679137308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,3 +1210,4 @@ SceneRoots:
   - {fileID: 2023095521}
   - {fileID: 987852444}
   - {fileID: 299201100}
+  - {fileID: 1453604490}
