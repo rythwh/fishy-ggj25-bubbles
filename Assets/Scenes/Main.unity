@@ -408,6 +408,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1747306897}
+    - target: {fileID: 237958730758351475, guid: 86a166ec22d653a459d7c0549993f0b4, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 238704628}
     - target: {fileID: 2696735836056398537, guid: 86a166ec22d653a459d7c0549993f0b4, type: 3}
       propertyPath: m_Name
       value: GameManager
