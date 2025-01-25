@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 52a584ee5ac3d774082b8fa0a202c415
   m_SerializeEntries:
+  - m_GUID: 15f020072489a6c438ce295996228ea0
+    m_Address: Prefabs/SceneryBundle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b243bd41ab237e0488a1b7b53b6d3d1a
     m_Address: UI/UIMainMenu
     m_ReadOnly: 0

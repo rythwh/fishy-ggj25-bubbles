@@ -10,7 +10,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/84f0d810adef4e6c8deab33e4ae93f7c1dec00/e3/6ced094d/Random.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../RyUI/Packages/RyUI/Runtime/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rywh.ryui/Runtime/Classes/UIConfig.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rywh.ryui/Runtime/IUIManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -21,6 +25,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -28,6 +33,23 @@
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="33068">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="33068" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list>
+          <MonoRuntime />
+        </list>
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="TaskManager">
     <servers />
   </component>
