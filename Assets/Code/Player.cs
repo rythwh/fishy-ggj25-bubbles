@@ -10,15 +10,42 @@ public class Player : MonoBehaviour
     [SerializeField] private float movementSmoothness = 0.1f;
     [SerializeField] private float rotationSmoothness = 0.1f;
 
+    [SerializeField] private FishCounter fishCounter;
     private Vector2 movementInput;
     private float currentSpeed;
     private float currentRotationSpeed;
+    private bool isCollidingWithFish = false;
 
     public event Action<Vector3> OnPlayerMoved;
+    
 
     [UsedImplicitly]
     public void OnMove(InputAction.CallbackContext context) {
         movementInput = context.ReadValue<Vector2>();
+    }
+    
+    [UsedImplicitly]
+    public void OnInteract(InputAction.CallbackContext context) {
+        if (isCollidingWithFish) // Check if the interaction is performed and the object is colliding with a fish
+        {
+            StartFish();
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Fish"))
+        {
+            isCollidingWithFish = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Fish"))
+        {
+            isCollidingWithFish = false;
+        }
     }
 
     private void Update() {
@@ -41,5 +68,11 @@ public class Player : MonoBehaviour
             return;
         }
         OnPlayerMoved?.Invoke(transform.position);
+    }
+
+    private void StartFish()
+    {
+        Debug.Log("Fish!");
+        fishCounter.AddFish();
     }
 }
