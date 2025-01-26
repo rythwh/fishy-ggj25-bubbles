@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea8814e-5025-433c-bbbe-6df449c85e21" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Fish.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Fish.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/David.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/David.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FishParticles.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FishParticles.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737829079552</updated>
       <workItem from="1737829081223" duration="5104000" />
+      <workItem from="1737882412232" duration="634000" />
     </task>
     <servers />
   </component>
@@ -106,6 +106,7 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
     <option name="unityProject" value="true" />
     <option name="unityProjectFolder" value="true" />
   </component>
