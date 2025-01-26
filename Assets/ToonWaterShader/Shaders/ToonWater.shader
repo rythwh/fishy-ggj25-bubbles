@@ -34,6 +34,11 @@
 		// to foam being rendered.
 		_FoamMaxDistance("Foam Maximum Distance", Float) = 0.4
 		_FoamMinDistance("Foam Minimum Distance", Float) = 0.04		
+
+        // Add wave properties
+        _WaveSpeed("Wave Speed", Float) = 1
+        _WaveHeight("Wave Height", Float) = 0.5
+        _WaveFrequency("Wave Frequency", Float) = 1
     }
     SubShader
     {
@@ -89,9 +94,32 @@
 			sampler2D _SurfaceDistortion;
 			float4 _SurfaceDistortion_ST;
 
+            // Add wave variables
+            float _WaveSpeed;
+            float _WaveHeight;
+            float _WaveFrequency;
+
             v2f vert (appdata v)
             {
                 v2f o;
+
+                // Create wave motion
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                
+                // Create waves using sine functions
+                float wave1 = sin(worldPos.x * _WaveFrequency + _Time.y * _WaveSpeed);
+                float wave2 = sin(worldPos.z * _WaveFrequency + _Time.y * _WaveSpeed);
+                
+                // Combine waves and apply height
+                float combinedWaves = (wave1 + wave2) * _WaveHeight;
+                
+                // Apply wave height to vertex
+                v.vertex.y += combinedWaves;
+                
+                // Update normal based on waves
+                float3 tangent = float3(1, wave1 * _WaveHeight * _WaveFrequency, 0);
+                float3 bitangent = float3(0, wave2 * _WaveHeight * _WaveFrequency, 1);
+                v.normal = normalize(cross(tangent, bitangent));
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
 				o.screenPosition = ComputeScreenPos(o.vertex);
