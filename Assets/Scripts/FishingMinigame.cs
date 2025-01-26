@@ -51,6 +51,7 @@ public class FishingMinigame : MonoBehaviour
 
 	[Header("Setup References")]
 	[SerializeField] private GameObject fishingSpotIndicator;
+	[SerializeField] private GameObject failBubble;
 
 	private void Start() {
 		catchingBarRB = catchingbar.GetComponent<Rigidbody2D>();
