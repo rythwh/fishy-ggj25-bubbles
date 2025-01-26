@@ -9,10 +9,10 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float playerOffset;
     [SerializeField] private GameObject fishPrefab;
-    
+
     [Header("Spawn Radius Settings")]
     [SerializeField] private int spawnRadius = 10;
-    
+
     [Header("Spawn Time Settings")]
     [SerializeField] private int minTimeBetweenSpawns = 5;
     [SerializeField] private int maxTimeBetweenSpawns = 60;
@@ -20,15 +20,16 @@ public class FishSpawner : MonoBehaviour
     [Header("Fish Settings")]
     [SerializeField] private float minimumSpacingBetweenFish = 3f;
     [SerializeField] private int maximumFishCount = 5;
+    [SerializeField] private LayerMask collisionLayerMask;
 
     private int currentNumberOfFish = 0;
     private List<GameObject> objectPool = new();
-    
+
     private void Start()
     {
         StartCoroutine(SpawnRoutine());
     }
-    
+
     private IEnumerator SpawnRoutine()
     {
         while (true) // Run forever
@@ -39,7 +40,16 @@ public class FishSpawner : MonoBehaviour
                 yield return new WaitForSeconds(randomSpawnDelay);
 
                 GameObject obj = GetPooledObject();
-                obj.transform.position = GetRandomPositionAroundPlayer();
+                Vector3 spawnPosition = GetRandomPositionAroundPlayer();
+
+                // If no valid position was found, skip spawning this fish
+                if (spawnPosition == Vector3.zero)
+                {
+                    Debug.LogWarning("Could not find a valid position for spawning fish.");
+                    continue;
+                }
+
+                obj.transform.position = spawnPosition;
                 obj.SetActive(true);
                 currentNumberOfFish++;
             }
@@ -75,6 +85,7 @@ public class FishSpawner : MonoBehaviour
                 return pooledObj;
             }
         }
+
         GameObject newObj = Instantiate(fishPrefab);
         objectPool.Add(newObj);
         return newObj;
@@ -99,7 +110,7 @@ public class FishSpawner : MonoBehaviour
             foreach (var fish in objectPool)
             {
                 if (!fish.activeInHierarchy) continue;
-                
+
                 float distance = Vector3.Distance(fish.transform.position, potentialPosition);
                 if (distance < minimumSpacingBetweenFish)
                 {
@@ -108,7 +119,10 @@ public class FishSpawner : MonoBehaviour
                 }
             }
 
-            if (isFarEnough)
+            // Check if the position collides with any objects
+            bool collidesWithObject = Physics.OverlapSphere(potentialPosition, minimumSpacingBetweenFish, collisionLayerMask).Length > 0;
+
+            if (isFarEnough && !collidesWithObject)
             {
                 return potentialPosition;
             }
