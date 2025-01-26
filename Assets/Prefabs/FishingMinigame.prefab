@@ -751,6 +751,8 @@ MonoBehaviour:
   moveSpeed: 3
   maxWaitTime: 1
   minWaitTime: 0.5
+  currentDestination: {x: 0, y: 0, z: 0}
+  waiting: 0
 --- !u!1 &5210136758707962089
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +811,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 160196bb81ec0444a93aabb61f8dd018, type: 3}
   catchSpeed: 10
   catchingForce: 30000
+  fishCounterText: {fileID: 0}
+  fishingSpotIndicator: {fileID: 0}
 --- !u!1 &5428789207724326312
 GameObject:
   m_ObjectHideFlags: 0
