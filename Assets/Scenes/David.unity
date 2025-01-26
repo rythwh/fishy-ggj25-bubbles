@@ -6407,6 +6407,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2835598244825469687, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4504651256285963589, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -6414,6 +6418,10 @@ PrefabInstance:
     - target: {fileID: 5210136758707962089, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
       propertyPath: m_Name
       value: FishingMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210136758707962089, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6209970897603318917, guid: eae3fab713aca4249b2e3c7bbdecb8f4, type: 3}
       propertyPath: fishSpawner
