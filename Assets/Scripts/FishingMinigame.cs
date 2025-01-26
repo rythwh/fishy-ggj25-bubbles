@@ -112,13 +112,8 @@ public class FishingMinigame : MonoBehaviour
 		Sprite randomFishSprite = fishSprites[randomFishIndex];
 		currentFishName = randomFishSprite.name;
 		
-		// Set the fish sprite
+		// Set the fish sprite without changing size
 		fishBar.GetComponent<Image>().sprite = randomFishSprite;
-		
-		// Adjust size if needed
-		var w = Map(0, 32, 0, 100, randomFishSprite.texture.width);
-		var h = Map(0, 32, 0, 100, randomFishSprite.texture.height);
-		fishBar.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
 
 		// Reset fish position and state
 		fishBar.transform.localPosition = Vector3.zero;

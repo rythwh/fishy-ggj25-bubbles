@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea8814e-5025-433c-bbbe-6df449c85e21" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/KOMIKAX_ SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KOMIKAX_ SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FishingMinigame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FishingMinigame.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.fishy-ggj25-bubbles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.fishy-ggj25-bubbles/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_5.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Prefab/Rock_6.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/SkyDome/SkyDome.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/SkyDome/SkyDome.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/David.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/David.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FishingMinigame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FishingMinigame.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ToonWaterShader/Shaders/ToonWater.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ToonWaterShader/Shaders/ToonWater.shader" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737829079552</updated>
       <workItem from="1737829081223" duration="5104000" />
-      <workItem from="1737882412232" duration="1287000" />
+      <workItem from="1737882412232" duration="2796000" />
     </task>
     <servers />
   </component>
@@ -122,13 +130,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Code/World/WorldManager.cs</url>
-          <line>46</line>
+          <line>47</line>
           <properties documentPath="C:\Users\Ryan\Documents\GitHub\fishy-ggj25-bubbles\Assets\Code\World\WorldManager.cs" containingFunctionPresentation="Method 'GenerateWorld'" />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Code/World/WorldManager.cs</url>
-          <line>51</line>
+          <line>52</line>
           <properties documentPath="C:\Users\Ryan\Documents\GitHub\fishy-ggj25-bubbles\Assets\Code\World\WorldManager.cs" containingFunctionPresentation="Method 'GenerateWorld'" />
           <option name="timeStamp" value="10" />
         </line-breakpoint>

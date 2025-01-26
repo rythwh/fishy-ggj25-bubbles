@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 417618c5ab83647a8982bb1231ab1f43, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 6e95e873ec626473388afe20cada8830, type: 2}
+      objectReference: {fileID: 2100000, guid: ed190c1e4f34b4076a87ca46bbb356fd, type: 2}
     - target: {fileID: 919132149155446097, guid: 417618c5ab83647a8982bb1231ab1f43, type: 3}
       propertyPath: m_Name
       value: Rock_4
@@ -62,15 +62,15 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 417618c5ab83647a8982bb1231ab1f43, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6290566857487062192}
+      addedObject: {fileID: -4204115348819348145}
   m_SourcePrefab: {fileID: 100100000, guid: 417618c5ab83647a8982bb1231ab1f43, type: 3}
 --- !u!1 &1400521581185648299 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 417618c5ab83647a8982bb1231ab1f43, type: 3}
   m_PrefabInstance: {fileID: 2282989818253933562}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &6290566857487062192
-BoxCollider:
+--- !u!64 &-4204115348819348145
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -87,6 +87,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9.781778, y: 5.929067, z: 7.6891594}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6521516929329306610, guid: 417618c5ab83647a8982bb1231ab1f43, type: 3}
