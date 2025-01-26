@@ -34,12 +34,13 @@ namespace Fishy.World
 		private void GenerateWorld() {
 			Vector3Int currentPlayerChunk = new Vector3Int(
 				Mathf.FloorToInt(playerPosition.x / ChunkSize),
+				0,
 				Mathf.FloorToInt(playerPosition.z / ChunkSize)
 			);
 			if (currentPlayerChunk != playerChunk) {
 				playerChunk = currentPlayerChunk;
-				Vector3Int playerChunkMin = playerChunk - (Vector3Int.one * (ChunkDistance + 1));
-				Vector3Int playerChunkMax = playerChunk + (Vector3Int.one * (ChunkDistance + 1));
+				Vector3Int playerChunkMin = playerChunk - (Vector3Int.one * (ChunkDistance));
+				Vector3Int playerChunkMax = playerChunk + (Vector3Int.one * (ChunkDistance));
 				for (int x = playerChunkMin.x; x < playerChunkMax.x; x++) {
 					for (int z = playerChunkMin.z; z < playerChunkMax.z; z++) {
 						Vector3Int chunkPosition = new Vector3Int(x, 0, z);

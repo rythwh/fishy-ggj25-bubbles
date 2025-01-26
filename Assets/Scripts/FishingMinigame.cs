@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -53,6 +54,8 @@ public class FishingMinigame : MonoBehaviour
 	[SerializeField] private GameObject fishingSpotIndicator;
 	[SerializeField] private GameObject failBubble;
 
+	private Transform failBubbleInitialTransform;
+
 	private void Start() {
 		catchingBarRB = catchingbar.GetComponent<Rigidbody2D>();
 		catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition;
@@ -61,6 +64,11 @@ public class FishingMinigame : MonoBehaviour
 		if (fishSpawner == null)
 		{
 			Debug.LogError("No FishSpawner found in scene!");
+		}
+		if (failBubble != null)
+		{
+			failBubbleInitialTransform = failBubble.transform;
+			failBubble.SetActive(false);
 		}
 	}
 
@@ -153,6 +161,8 @@ public class FishingMinigame : MonoBehaviour
 		minigameCanvas.SetActive(false);
 		catchPercentage = 0f;
 		catchingbar.transform.localPosition = catchingBarLoc;
+		failBubble.SetActive(true);
+		StartCoroutine(AnimateFailBubble());
 	}
 
 	private void FishCaught() {
@@ -179,7 +189,29 @@ public class FishingMinigame : MonoBehaviour
 		}
 	}
 	
-	
+	private IEnumerator AnimateFailBubble()
+	{
+		failBubble.SetActive(true);
+		failBubble.transform.localScale = failBubbleInitialTransform.localScale;
+		Vector3 originalScale = failBubbleInitialTransform.localScale;
+
+		failBubble.transform.DOScale(originalScale * 1.2f, 0.3f) // Slightly larger for the pop effect
+			.SetEase(Ease.OutBack)
+			.OnComplete(() =>
+			{
+				failBubble.transform.localScale = originalScale;
+			});
+
+		yield return new WaitForSeconds(0f);
+		failBubble.transform.DOScale(Vector3.zero, 0.3f)
+			.SetEase(Ease.InBack)
+			.OnComplete(() =>
+			{
+				failBubble.SetActive(false);
+				failBubble.transform.localScale = originalScale;
+			});
+	}
+
 
 	private float Map(float a, float b, float c, float d, float x) {
 		return (x - a) / (b - a) * (d - c) + c;
