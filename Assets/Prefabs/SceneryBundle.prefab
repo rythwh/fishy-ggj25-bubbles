@@ -44,4 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925e0fddc603479eae81e73072ca716f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockPrefab: {fileID: 7166559479673158604, guid: eef0a7712c3674689adb581e52cca797, type: 3}
+  rockPrefabs:
+  - {fileID: 8772777997091152275, guid: 842af0a603bfb43e8a0d99f8146e00a9, type: 3}
+  - {fileID: 8802539214383021738, guid: df838d297b3e94a8da8a683225c5c95b, type: 3}
+  - {fileID: 2365071273824100105, guid: 73718b09df1694b7c8546e9aab683533, type: 3}
+  - {fileID: 1400521581185648299, guid: c4e4c4853605a4a3ea8f88a2924e8e9e, type: 3}
+  - {fileID: 8989402069296334012, guid: 3827a1390ce2a407284c529762532da3, type: 3}
+  - {fileID: 4717347270577687848, guid: 9915bb279aa8c4efe957b036a57b283c, type: 3}
