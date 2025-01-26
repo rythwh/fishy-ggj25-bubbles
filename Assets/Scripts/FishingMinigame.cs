@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
-using System.Collections;
 using TMPro;
 using JetBrains.Annotations;
 using DG.Tweening;
@@ -52,6 +51,7 @@ public class FishingMinigame : MonoBehaviour
 
 	[Header("Setup References")]
 	[SerializeField] private GameObject fishingSpotIndicator;
+	[SerializeField] private GameObject failBubble;
 
 	private void Start() {
 		catchingBarRB = catchingbar.GetComponent<Rigidbody2D>();
@@ -173,7 +173,7 @@ public class FishingMinigame : MonoBehaviour
 		// Deactivate both the fishing spot and indicator
 		if (currentFishingSpot != null)
 		{
-			currentFishingSpot.SetActive(false);
+			fishSpawner.RemoveFishingSpot(currentFishingSpot);
 			fishingSpotIndicator.SetActive(false);
 			currentFishingSpot = null;
 		}
