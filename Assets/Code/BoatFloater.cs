@@ -1,23 +1,18 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class BoatFloater : MonoBehaviour
 {
     public Material waterMaterial; // Reference to the water shader material
-    private Rigidbody rb;
 
     [Header("Wave Settings")]
     [SerializeField] private float waterLevel = 0f; // Base water level
-    [SerializeField] private float boatSpeed = 5f; // How fast the boat adjusts to waves
+    [SerializeField] private float floatSpeed = 5f; // How fast the boat adjusts to waves
     [SerializeField] private float floatOffset = 0.2f; // Small offset to keep boat above water
+    [SerializeField] private float rotationSpeed = 5f; // How fast the boat rotates to match waves
+    [SerializeField] private float waveAmplifier = 2f; // Amplifies the wave effect
+    [SerializeField] private float rotationAmplifier = 45f; // Amplifies the rotation effect
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-    }
-
-    private void FixedUpdate()
+    private void Update()
     {
         Vector3 position = transform.position;
         
@@ -26,25 +21,22 @@ public class BoatFloater : MonoBehaviour
         float waveHeight = waterMaterial.GetFloat("_WaveHeight");
         float waveFreq = waterMaterial.GetFloat("_WaveFrequency");
 
-        // Calculate waves using the same formula as in the shader
-        float wave1 = Mathf.Sin(position.x * waveFreq + Time.time * waveSpeed);
-        float wave2 = Mathf.Sin(position.z * waveFreq + Time.time * waveSpeed);
+        // Calculate waves using the same formula as in the shader but amplified
+        float wave1 = Mathf.Sin(position.x * waveFreq + Time.time * waveSpeed) * waveAmplifier;
+        float wave2 = Mathf.Sin(position.z * waveFreq + Time.time * waveSpeed) * waveAmplifier;
         
         // Calculate target height including waves and small offset
         float targetHeight = waterLevel + ((wave1 + wave2) * waveHeight) + floatOffset;
         
-        // Calculate the difference between current and target height
-        float heightDifference = targetHeight - position.y;
-        
-        // Apply force to move towards target height
-        Vector3 force = Vector3.up * heightDifference * boatSpeed;
-        rb.AddForce(force, ForceMode.Acceleration);
+        // Direct position update for more noticeable movement
+        position.y = Mathf.Lerp(position.y, targetHeight, floatSpeed * Time.deltaTime);
+        transform.position = position;
 
-        // Rotate boat to match wave angle
-        float waveAngleX = Mathf.Cos(position.x * waveFreq + Time.time * waveSpeed) * waveHeight * waveFreq;
-        float waveAngleZ = Mathf.Cos(position.z * waveFreq + Time.time * waveSpeed) * waveHeight * waveFreq;
+        // Rotate boat to match wave angle with amplified effect
+        float waveAngleX = Mathf.Cos(position.x * waveFreq + Time.time * waveSpeed) * waveHeight * waveFreq * rotationAmplifier;
+        float waveAngleZ = Mathf.Cos(position.z * waveFreq + Time.time * waveSpeed) * waveHeight * waveFreq * rotationAmplifier;
         
-        Quaternion targetRotation = Quaternion.Euler(-waveAngleZ * Mathf.Rad2Deg, transform.rotation.eulerAngles.y, waveAngleX * Mathf.Rad2Deg);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * boatSpeed);
+        Vector3 targetEuler = new Vector3(-waveAngleZ, transform.rotation.eulerAngles.y, waveAngleX);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetEuler), rotationSpeed * Time.deltaTime);
     }
 } 
