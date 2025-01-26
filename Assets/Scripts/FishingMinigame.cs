@@ -191,34 +191,23 @@ public class FishingMinigame : MonoBehaviour
 	
 	private IEnumerator AnimateFailBubble()
 	{
-		// Ensure the failBubble is active and restore its initial scale and position
 		failBubble.SetActive(true);
 		failBubble.transform.localScale = failBubbleInitialTransform.localScale;
-		failBubble.transform.localPosition = failBubbleInitialTransform.localPosition;
-
-		// Store the original scale
 		Vector3 originalScale = failBubbleInitialTransform.localScale;
 
-		// Scale up with a pop effect
 		failBubble.transform.DOScale(originalScale * 1.2f, 0.3f) // Slightly larger for the pop effect
 			.SetEase(Ease.OutBack)
 			.OnComplete(() =>
 			{
-				// Restore to original scale after the pop effect
 				failBubble.transform.localScale = originalScale;
 			});
 
-		// Wait for 1.7 seconds (remaining time for a total of 2 seconds)
-		yield return new WaitForSeconds(1.7f);
-
-		// Scale down and deactivate
+		yield return new WaitForSeconds(0f);
 		failBubble.transform.DOScale(Vector3.zero, 0.3f)
 			.SetEase(Ease.InBack)
 			.OnComplete(() =>
 			{
 				failBubble.SetActive(false);
-
-				// Reset the scale to its original value
 				failBubble.transform.localScale = originalScale;
 			});
 	}
