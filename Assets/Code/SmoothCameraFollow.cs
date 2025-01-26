@@ -23,7 +23,7 @@ public class SmoothCameraFollow : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (target == null) return;
 
