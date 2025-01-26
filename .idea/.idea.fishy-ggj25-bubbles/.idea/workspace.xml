@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea8814e-5025-433c-bbbe-6df449c85e21" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FishParticles.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FishParticles.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KOMIKAX_ SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KOMIKAX_ SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FishingMinigame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FishingMinigame.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FishingMinigame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FishingMinigame.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737829079552</updated>
       <workItem from="1737829081223" duration="5104000" />
-      <workItem from="1737882412232" duration="634000" />
+      <workItem from="1737882412232" duration="1287000" />
     </task>
     <servers />
   </component>
